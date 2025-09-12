@@ -1,0 +1,4 @@
+,sppp,sppp,sppp,sppp,sppp,total_positivity,total_positivity,braak_score,braak_score,cerad_score,cerad_score
+,mean,std,count,min,max,mean,std,mean,std,mean,std
+region,,,,,,,,,,,
+unknown,0.137,1.655,1000,0.0,51.12,6.032,10.174,1.011,0.176,0.512,0.754

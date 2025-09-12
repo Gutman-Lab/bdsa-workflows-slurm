@@ -1,0 +1,16 @@
+EXTENDED DIGITAL NEUROPATHOLOGY ANALYSIS REPORT
+==================================================
+
+Input dir: /nashome/bhavesh/bdsa-workflows-slurm/output
+Results dir: /nashome/bhavesh/latest-version-workflow/bdsa-workflows-slurm/Analysis/Digital-Neuropathology-Analysis/results
+
+Total samples: 1472
+Regions detected: 1
+
+SPPP summary: mean=0.179 std=1.684 min=0.000 max=51.120
+
+ANOVA: skipped or insufficient groups.
+
+Files written:
+- Tables: /nashome/bhavesh/latest-version-workflow/bdsa-workflows-slurm/Analysis/Digital-Neuropathology-Analysis/results/tables
+- Visualizations: /nashome/bhavesh/latest-version-workflow/bdsa-workflows-slurm/Analysis/Digital-Neuropathology-Analysis/results/advanced_visualizations

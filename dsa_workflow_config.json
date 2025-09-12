@@ -1,0 +1,82 @@
+{
+    "global": {
+        "output_directory": "/nashome/bhavesh/bdsa-workflows-slurm/output",
+        "dsa_api_key": "KVp0XB4gPCjRvwmOlL3weJLwQbV5zikAwlFhLJF8",
+        "dsa_server_url": "http://bdsa.pathology.emory.edu:8080/api/v1",
+        "local_file_store": "/wsi_archive/APOLLO_NP"
+    },
+    "step1": {
+        "root_folder_id": "673133b4900c0c05599779aa",
+        "stainID": "aBeta",
+        "output_file": "image_list.json",
+        "max_images": 200
+    },
+    "step2": {
+        "input_file": "image_list.json",
+        "output_file": "accessibility_results.json",
+        "file_checks": {
+            "check_readable": true,
+            "check_writable": false,
+            "check_executable": false
+        }
+    },
+    "step3": {
+        "input_file": "accessibility_results.json",
+        "output_file": "docker_results.json",
+        "docker_image": "10.10.10.10:5000/neurotk_docker:latest",
+        "tile_size": 8,
+        "stride": 8,
+        "batch_size": 2,
+        "num_workers": 2,
+        "check_output_exists": true,
+        "docker_mounts": [
+            {
+                "host_path": "/slurmshare",
+                "container_path": "/slurmshare"
+            },
+            {
+                "host_path": "/wsi_archive",
+                "container_path": "/wsi_archive"
+            }
+        ]
+    },
+    "step4": {
+        "input_file": "docker_results.json",
+        "output_file": "ppc_results.json",
+        "docker_image": "10.10.10.10:5000/neurotk_docker:latest",
+        "ppc_parameters": {
+            "docname": "PPCTest",
+            "hue_value": 0.05,
+            "hue_width": 0.15,
+            "saturation_minimum": 0.05,
+            "intensity_upper_limit": 0.95,
+            "intensity_weak_threshold": 0.75,
+            "intensity_strong_threshold": 0.45,
+            "intensity_lower_limit": 0.05,
+            "num_workers": 4,
+            "num_threads_per_worker": 1
+        },
+        "dsa_config": {
+            "region_doc": "region_doc",
+            "region_group": "Leptomeninges",
+            "gc_token": "gc_token",
+            "dsa_api_url": "dsa_api_url"
+        },
+        "check_output_exists": true,
+        "executionType": "pythonFile",
+        "docker_mounts": [
+            {
+                "host_path": "/slurmshare",
+                "container_path": "/slurmshare"
+            },
+            {
+                "host_path": "/wsi_archive",
+                "container_path": "/wsi_archive"
+            }
+        ]
+    },
+    "filters": {
+        "min_size_mb": 10,
+        "allowed_extensions": [".svs", ".ndpi", ".tif", ".tiff"]
+    }
+}
